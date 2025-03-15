@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/moolah/static/css/main.95ce1262.css",
-    "main.js": "/moolah/static/js/main.113305bf.js",
+    "main.js": "/moolah/static/js/main.c3f6c7da.js",
     "static/js/453.fdcca5be.chunk.js": "/moolah/static/js/453.fdcca5be.chunk.js",
     "static/media/Roboto-Medium.ttf": "/moolah/static/media/Roboto-Medium.116fcd4fd987818c5d98.ttf",
     "static/media/CircularSpotifyText-Bold.otf": "/moolah/static/media/CircularSpotifyText-Bold.f8952626140be9495d1b.otf",
     "index.html": "/moolah/index.html",
     "main.95ce1262.css.map": "/moolah/static/css/main.95ce1262.css.map",
-    "main.113305bf.js.map": "/moolah/static/js/main.113305bf.js.map",
+    "main.c3f6c7da.js.map": "/moolah/static/js/main.c3f6c7da.js.map",
     "453.fdcca5be.chunk.js.map": "/moolah/static/js/453.fdcca5be.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.95ce1262.css",
-    "static/js/main.113305bf.js"
+    "static/js/main.c3f6c7da.js"
   ]
 }

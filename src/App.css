@@ -3,17 +3,14 @@ body {
   font-family: 'Roboto', sans-serif;
   transition: background-color 0.3s, color 0.3s;
 }
-
 body.dark-mode {
   background-color: #121212;
   color: #e0e0e0;
 }
-
 body.light-mode {
   background-color: #f0f2f5;
   color: #333;
 }
-
 .app-container {
   max-width: 800px;
   margin: 60px auto;
@@ -22,41 +19,58 @@ body.light-mode {
   position: relative;
   transition: background-color 0.3s, box-shadow 0.3s;
 }
-
 .app-container.dark {
   background-color: #1e1e1e;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
-
 .app-container.light {
   background-color: #ffffff;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
-
 .header {
   position: absolute;
   top: 10px;
   right: 10px;
 }
-
 .mode-toggle {
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
 }
-
 h1, h2 {
   text-align: center;
   margin-bottom: 20px;
 }
-
+.calc-mode-selector {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.calc-mode-selector button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+  background: #ccc;
+  color: #333;
+}
+.app-container.dark .calc-mode-selector button {
+  background: #333;
+  color: #e0e0e0;
+}
+.calc-mode-selector button.active {
+  background-color: #007bff;
+  color: #fff;
+}
 .calc-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-
 .job-card {
   border: 1px solid;
   border-color: inherit;
@@ -65,18 +79,15 @@ h1, h2 {
   background: inherit;
   transition: background-color 0.3s, border-color 0.3s;
 }
-
 .input-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
 }
-
 .input-group label {
   margin-bottom: 5px;
   font-weight: 500;
 }
-
 .input-group input,
 .input-group select {
   padding: 10px;
@@ -87,45 +98,38 @@ h1, h2 {
   outline: none;
   transition: border 0.3s, background 0.3s, color 0.3s;
 }
-
 .app-container.dark .input-group input,
 .app-container.dark .input-group select {
   background: #2c2c2c;
   color: #e0e0e0;
   border-color: #555;
 }
-
 .app-container.light .input-group input,
 .app-container.light .input-group select {
   background: #fff;
   color: #333;
   border-color: #ccc;
 }
-
 .input-group input:focus,
 .input-group select:focus {
   border-color: #bb86fc;
 }
-
 .app-container.dark .input-group input:disabled,
 .app-container.dark .input-group select:disabled {
   background-color: #333;
   border-color: #444;
   color: #888;
 }
-
 .app-container.light .input-group input:disabled,
 .app-container.light .input-group select:disabled {
   background-color: #e9ecef;
   border-color: #ccc;
   color: #666;
 }
-
 .horizontal-group {
   display: flex;
   gap: 20px;
 }
-
 .toggle-btn {
   background: #ffc107;
   border: none;
@@ -137,39 +141,92 @@ h1, h2 {
   color: #121212;
   transition: background 0.3s;
 }
-
 .toggle-btn:hover {
   background: #e0a800;
 }
-
+.toggle-stats-btn {
+  background: transparent;
+  border: 2px solid #007bff;
+  color: #007bff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+}
+.app-container.dark .toggle-stats-btn {
+  border-color: #bb86fc;
+  color: #bb86fc;
+}
+.toggle-stats-btn:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+.app-container.dark .toggle-stats-btn:hover {
+  background-color: #9b67d2;
+  color: #fff;
+}
+.salary-breakdown-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+.breakdown-button {
+  flex: 1;
+  background: #007bff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  color: #fff;
+  font-size: 14px;
+  cursor: default;
+  transition: background 0.3s, transform 0.2s;
+}
+.breakdown-button:hover {
+  background: #0069d9;
+  transform: translateY(-2px);
+}
+.app-container.dark .breakdown-button {
+  background: #bb86fc;
+}
+.app-container.dark .breakdown-button:hover {
+  background: #9b67d2;
+}
 .date-range {
   margin-top: 10px;
   border-top: 1px solid;
   border-color: inherit;
   padding-top: 15px;
 }
-
 .exclude-days {
   margin-top: 15px;
 }
-
 .exclude-days label {
   font-weight: 500;
   margin-bottom: 5px;
   display: block;
 }
-
 .checkbox-group {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
-
 .checkbox-group label {
   font-size: 14px;
   cursor: pointer;
 }
-
+.salary-breakdown {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+.app-container.dark .salary-breakdown {
+  background: rgba(255, 255, 255, 0.1);
+}
 .remove-btn {
   background: #dc3545;
   color: #fff;
@@ -180,11 +237,9 @@ h1, h2 {
   align-self: flex-end;
   transition: background 0.3s;
 }
-
 .remove-btn:hover {
   background: #c82333;
 }
-
 .add-btn, .calc-btn {
   background: #28a745;
   color: #fff;
@@ -195,25 +250,22 @@ h1, h2 {
   font-size: 16px;
   transition: background 0.3s;
 }
-
 .add-btn:hover, .calc-btn:hover {
   background: #218838;
 }
-
 .calc-btn {
   background: #007bff;
 }
-
 .calc-btn:hover {
   background: #0069d9;
 }
-
 .result {
   margin-top: 30px;
   text-align: center;
   font-size: 24px;
 }
-
-input:disabled {
-  cursor: not-allowed;
+.yearly-calculator {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/moolah/static/css/main.61ad0015.css",
+    "main.js": "/moolah/static/js/main.f8fb2d6a.js",
+    "static/js/453.fdcca5be.chunk.js": "/moolah/static/js/453.fdcca5be.chunk.js",
+    "index.html": "/moolah/index.html",
+    "main.61ad0015.css.map": "/moolah/static/css/main.61ad0015.css.map",
+    "main.f8fb2d6a.js.map": "/moolah/static/js/main.f8fb2d6a.js.map",
+    "453.fdcca5be.chunk.js.map": "/moolah/static/js/453.fdcca5be.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.61ad0015.css",
+    "static/js/main.f8fb2d6a.js"
+  ]
+}

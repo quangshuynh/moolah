@@ -453,3 +453,64 @@ h1, h2 {
 .remove-icon-btn:hover {
   transform: scale(1.1);
 }
+
+/* tablets and small desktops */
+@media (max-width: 768px) {
+  .app-container {
+    margin: 30px 20px;
+    padding: 20px;
+  }
+
+  .calc-mode-selector {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .horizontal-group {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .job-card {
+    padding: 15px;
+  }
+
+  h1, h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/* mobile devices */
+@media (max-width: 480px) {
+  .app-container {
+    margin: 20px 10px;
+    padding: 15px;
+  }
+
+  .calc-mode-selector {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .input-group input,
+  .input-group select {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .calc-mode-selector button {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .horizontal-group {
+    flex-direction: column;
+  }
+
+  .salary-breakdown-buttons,
+  .checkbox-group {
+    flex-direction: column;
+  }
+}

@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/moolah/static/css/main.887fc2c3.css",
-    "main.js": "/moolah/static/js/main.8a8e2260.js",
+    "main.css": "/moolah/static/css/main.b7bc9768.css",
+    "main.js": "/moolah/static/js/main.8af219ac.js",
     "static/js/453.fdcca5be.chunk.js": "/moolah/static/js/453.fdcca5be.chunk.js",
     "static/media/Roboto-Medium.ttf": "/moolah/static/media/Roboto-Medium.116fcd4fd987818c5d98.ttf",
     "static/media/CircularSpotifyText-Bold.otf": "/moolah/static/media/CircularSpotifyText-Bold.f8952626140be9495d1b.otf",
     "index.html": "/moolah/index.html",
-    "main.887fc2c3.css.map": "/moolah/static/css/main.887fc2c3.css.map",
-    "main.8a8e2260.js.map": "/moolah/static/js/main.8a8e2260.js.map",
+    "main.b7bc9768.css.map": "/moolah/static/css/main.b7bc9768.css.map",
+    "main.8af219ac.js.map": "/moolah/static/js/main.8af219ac.js.map",
     "453.fdcca5be.chunk.js.map": "/moolah/static/js/453.fdcca5be.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.887fc2c3.css",
-    "static/js/main.8a8e2260.js"
+    "static/css/main.b7bc9768.css",
+    "static/js/main.8af219ac.js"
   ]
 }

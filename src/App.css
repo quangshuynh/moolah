@@ -48,7 +48,6 @@ body.light-mode {
 
 h1, h2 {
   text-align: center;
-  font-family: "circular-bold", sans-serif;
   margin-bottom: 20px;
 }
 
@@ -106,6 +105,20 @@ h1, h2 {
 .input-group input:focus,
 .input-group select:focus {
   border-color: #bb86fc;
+}
+
+.app-container.dark .input-group input:disabled,
+.app-container.dark .input-group select:disabled {
+  background-color: #333;
+  border-color: #444;
+  color: #888;
+}
+
+.app-container.light .input-group input:disabled,
+.app-container.light .input-group select:disabled {
+  background-color: #e9ecef;
+  border-color: #ccc;
+  color: #666;
 }
 
 .horizontal-group {
@@ -202,6 +215,5 @@ h1, h2 {
 }
 
 input:disabled {
-  background: #555;
   cursor: not-allowed;
 }

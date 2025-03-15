@@ -106,10 +106,10 @@ function App() {
           }
           currentDate.setDate(currentDate.getDate() + 1);
         }
-        income = wage * count * parseFloat(job.hoursPerDay || 8);
+        income = wage * count * parseFloat(job.hoursWorked || 0);
       } else {
         if (job.daysWorked) {
-          income = wage * parseFloat(job.daysWorked) * 8;
+          income = wage * parseFloat(job.daysWorked) * parseFloat(job.hoursWorked || 0);
         } else if (job.hoursWorked) {
           income = wage * parseFloat(job.hoursWorked);
         }
@@ -230,7 +230,7 @@ function App() {
                         Hourly: ${(parseFloat(job.hourlyWage)).toFixed(2)}
                       </button>
                       <button type="button" className="breakdown-button">
-                        Daily: ${(parseFloat(job.hourlyWage) * 8).toFixed(2)}
+                        Daily: ${(parseFloat(job.hourlyWage) * parseFloat(job.hoursPerDay || 8)).toFixed(2)}
                       </button>
                       <button type="button" className="breakdown-button">
                         Weekly: ${(parseFloat(job.hourlyWage) * 40).toFixed(2)}
@@ -267,6 +267,17 @@ function App() {
                   />
                 </div>
               </div>
+              {/* {!job.showDateRange && (
+                <div className="input-group">
+                  <label>Hours Per Day:</label>
+                  <input 
+                    type="number"
+                    placeholder="Enter hours per day"
+                    value={job.hoursPerDay}
+                    onChange={(e) => handleJobChange(index, 'hoursPerDay', e.target.value)}
+                  />
+                </div>
+              )} */}
               <button 
                 type="button" 
                 className="show-date-range-btn"
@@ -332,7 +343,7 @@ function App() {
               {jobs.length > 1 ? (
                 <div className="income-breakdown">
                   {result.jobIncomes.map((job, index) => (
-                    <p key={index}>{job.jobName} income: ${job.income.toFixed(2)}</p>
+                    <p key={index}>{job.jobName} Income: ${job.income.toFixed(2)}</p>
                   ))}
                   <hr />
                   <h2>Total Income: ${result.totalIncome.toFixed(2)}</h2>

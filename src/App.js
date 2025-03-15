@@ -250,7 +250,7 @@ function App() {
                   <label>Hours Worked:</label>
                   <input 
                     type="number"
-                    placeholder="Hours worked"
+                    placeholder="Enter hours"
                     value={job.hoursWorked}
                     disabled={job.showDateRange}
                     onChange={(e) => handleJobChange(index, 'hoursWorked', e.target.value)}
@@ -260,7 +260,7 @@ function App() {
                   <label>Days Worked:</label>
                   <input 
                     type="number"
-                    placeholder="Days worked"
+                    placeholder="Enter days"
                     value={job.daysWorked}
                     disabled={job.showDateRange}
                     onChange={(e) => handleJobChange(index, 'daysWorked', e.target.value)}

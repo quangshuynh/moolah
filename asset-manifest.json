@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/moolah/static/css/main.6e79e0a9.css",
+    "main.css": "/moolah/static/css/main.bb3ce615.css",
     "main.js": "/moolah/static/js/main.a5585446.js",
     "static/js/453.fdcca5be.chunk.js": "/moolah/static/js/453.fdcca5be.chunk.js",
     "static/media/CircularSpotifyText-Bold.otf": "/moolah/static/media/CircularSpotifyText-Bold.f8952626140be9495d1b.otf",
     "index.html": "/moolah/index.html",
-    "main.6e79e0a9.css.map": "/moolah/static/css/main.6e79e0a9.css.map",
+    "main.bb3ce615.css.map": "/moolah/static/css/main.bb3ce615.css.map",
     "main.a5585446.js.map": "/moolah/static/js/main.a5585446.js.map",
     "453.fdcca5be.chunk.js.map": "/moolah/static/js/453.fdcca5be.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6e79e0a9.css",
+    "static/css/main.bb3ce615.css",
     "static/js/main.a5585446.js"
   ]
 }

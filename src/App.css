@@ -1,21 +1,55 @@
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  background: #f0f2f5;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.app {
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.light-mode {
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+.app-container {
   max-width: 800px;
-  margin: 40px auto;
-  background: #ffffff;
+  margin: 60px auto;
   padding: 40px;
   border-radius: 8px;
+  position: relative;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.app-container.dark {
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.app-container.light {
+  background-color: #ffffff;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.mode-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 h1, h2 {
   text-align: center;
-  color: #333;
+  font-family: "circular-bold", sans-serif;
+  margin-bottom: 20px;
 }
 
 .calc-form {
@@ -25,10 +59,12 @@ h1, h2 {
 }
 
 .job-card {
-  border: 1px solid #e0e0e0;
+  border: 1px solid;
+  border-color: inherit;
   padding: 20px;
   border-radius: 6px;
-  background: #fafafa;
+  background: inherit;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .input-group {
@@ -46,15 +82,30 @@ h1, h2 {
 .input-group select {
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid;
+  border-color: #ccc;
   border-radius: 4px;
   outline: none;
-  transition: border 0.3s;
+  transition: border 0.3s, background 0.3s, color 0.3s;
+}
+
+.app-container.dark .input-group input,
+.app-container.dark .input-group select {
+  background: #2c2c2c;
+  color: #e0e0e0;
+  border-color: #555;
+}
+
+.app-container.light .input-group input,
+.app-container.light .input-group select {
+  background: #fff;
+  color: #333;
+  border-color: #ccc;
 }
 
 .input-group input:focus,
 .input-group select:focus {
-  border-color: #007bff;
+  border-color: #bb86fc;
 }
 
 .horizontal-group {
@@ -64,13 +115,14 @@ h1, h2 {
 
 .toggle-btn {
   background: #ffc107;
-  color: #fff;
   border: none;
   padding: 8px 12px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
   margin-bottom: 10px;
+  color: #121212;
+  transition: background 0.3s;
 }
 
 .toggle-btn:hover {
@@ -79,7 +131,8 @@ h1, h2 {
 
 .date-range {
   margin-top: 10px;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid;
+  border-color: inherit;
   padding-top: 15px;
 }
 
@@ -112,6 +165,7 @@ h1, h2 {
   border-radius: 4px;
   cursor: pointer;
   align-self: flex-end;
+  transition: background 0.3s;
 }
 
 .remove-btn:hover {
@@ -126,6 +180,7 @@ h1, h2 {
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  transition: background 0.3s;
 }
 
 .add-btn:hover, .calc-btn:hover {
@@ -144,10 +199,9 @@ h1, h2 {
   margin-top: 30px;
   text-align: center;
   font-size: 24px;
-  color: #333;
 }
 
 input:disabled {
-  background: #e9ecef;
+  background: #555;
   cursor: not-allowed;
 }

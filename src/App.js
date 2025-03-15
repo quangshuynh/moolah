@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
+  const [darkMode, setDarkMode] = useState(true);
   const [jobs, setJobs] = useState([
     { 
       hourlyWage: "", 
@@ -11,10 +12,18 @@ function App() {
       endDate: "", 
       hoursPerDay: "8",
       showDateRange: false,
-      excludedDays: [] // array of day names to exclude
+      excludedDays: []
     }
   ]);
   const [result, setResult] = useState(null);
+
+  useEffect(() => {
+    document.body.className = darkMode ? 'dark-mode' : 'light-mode';
+  }, [darkMode]);
+
+  const toggleMode = () => {
+    setDarkMode(prevMode => !prevMode);
+  };
 
   const handleJobChange = (index, field, value) => {
     const newJobs = [...jobs];
@@ -72,7 +81,6 @@ function App() {
       let income = 0;
       
       if(job.showDateRange && job.startDate && job.endDate) {
-        // calculate number of valid days in the date range (excluding specified days)
         const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         let count = 0;
         let currentDate = new Date(job.startDate);
@@ -86,10 +94,9 @@ function App() {
         }
         income += wage * count * parseFloat(job.hoursPerDay || 8);
       } else {
-        // if date range is not active, use days or hours
-        if(job.daysWorked) {
+        if (job.daysWorked) {
           income += wage * parseFloat(job.daysWorked) * 8;
-        } else if(job.hoursWorked) {
+        } else if (job.hoursWorked) {
           income += wage * parseFloat(job.hoursWorked);
         }
       }
@@ -100,8 +107,21 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <h1>Job Income Calculator</h1>
+    <div className={`app-container ${darkMode ? "dark" : "light"}`}>
+      <header className="header">
+        <button className="mode-toggle" onClick={toggleMode}>
+          {darkMode ? (
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#FFC107" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M6.76 4.84l-1.8-1.79L3.55 4.46l1.79 1.8 1.42-1.42zm10.48 0l1.8-1.79-1.42-1.42-1.79 1.79 1.41 1.42zM12 4V0h-2v4h2zm0 20v-4h-2v4h2zm7-12h4v-2h-4v2zm-20 0h4v-2H-1v2zm16.24 7.16l1.8 1.79 1.41-1.41-1.79-1.8-1.42 1.42zm-10.48 0L4.55 17.5l1.41-1.41 1.79 1.79-1.42 1.42zM12 6a6 6 0 100 12 6 6 0 000-12z"/>
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#484742" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M9.37 5.51A7.5 7.5 0 0116.49 12 7.5 7.5 0 019.37 18.49 7.5 7.5 0 019.37 5.51zm0-2.51c-1.02 0-2.01.16-2.93.47A9 9 0 1018.47 9.3c0-.07-.01-.13-.01-.2a7.5 7.5 0 00-7.5-7.5z"/>
+            </svg>
+          )}
+        </button>
+      </header>
+      <h1>Moolah</h1>
       <form onSubmit={handleSubmit} className="calc-form">
         {jobs.map((job, index) => (
           <div key={index} className="job-card">
@@ -122,7 +142,7 @@ function App() {
                   type="number"
                   placeholder="Hours worked"
                   value={job.hoursWorked}
-                  disabled={job.showDateRange} // disabled when date range is active
+                  disabled={job.showDateRange}
                   onChange={(e) => handleJobChange(index, 'hoursWorked', e.target.value)}
                 />
               </div>
@@ -132,7 +152,7 @@ function App() {
                   type="number"
                   placeholder="Days worked"
                   value={job.daysWorked}
-                  disabled={job.showDateRange} // disabled when date range is active
+                  disabled={job.showDateRange}
                   onChange={(e) => handleJobChange(index, 'daysWorked', e.target.value)}
                 />
               </div>

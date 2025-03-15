@@ -227,6 +227,16 @@ h1, h2 {
 .app-container.dark .salary-breakdown {
   background: rgba(255, 255, 255, 0.1);
 }
+.eight-hours-note {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+.app-container.dark .eight-hours-note {
+  background: rgba(255, 255, 255, 0.1);
+}
 .remove-btn {
   background: #dc3545;
   color: #fff;
@@ -236,6 +246,7 @@ h1, h2 {
   cursor: pointer;
   align-self: flex-end;
   transition: background 0.3s;
+  margin-left: 5px;
 }
 .remove-btn:hover {
   background: #c82333;

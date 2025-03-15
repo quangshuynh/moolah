@@ -138,7 +138,7 @@ function App() {
           )}
         </button>
       </header>
-      <h1>Income Calculator</h1>
+      <h1>Moolah</h1>
       <div className="calc-mode-selector">
         <button 
           className={calcMode === "job" ? "active" : ""}
@@ -174,7 +174,7 @@ function App() {
                     className="toggle-stats-btn"
                     onClick={() => toggleMoreStats(index)}
                   >
-                    {job.showMoreStats ? "Hide More Stats" : "Show More Stats"}
+                    {job.showMoreStats ? "Hide  Stats" : "Show 8 Hours Stats"}
                   </button>
                   {job.showMoreStats && (
                     <div className="salary-breakdown-buttons">
@@ -296,6 +296,7 @@ function App() {
         </form>
       ) : (
         <div className="yearly-calculator">
+
           <div className="input-group">
             <label>Annual Salary ($):</label>
             <input
@@ -305,9 +306,11 @@ function App() {
               onChange={(e) => setAnnualSalary(e.target.value)}
             />
           </div>
+          <div className="eight-hours-note">
+            These stats assume an 8-hour day
+          </div>
           {annualSalary && (
             <div className="salary-breakdown">
-              <p>Note: Stats assume an 8-hour day.</p>
               {(() => {
                 const breakdown = getYearlyBreakdown(annualSalary);
                 return (

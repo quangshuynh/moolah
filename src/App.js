@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [calcMode, setCalcMode] = useState("job");
   const [jobs, setJobs] = useState([
     { 
+      jobName: "Job 1",
       hourlyWage: "", 
       hoursWorked: "", 
       daysWorked: "", 
@@ -14,24 +14,21 @@ function App() {
       hoursPerDay: "8",
       showDateRange: false,
       excludedDays: [],
-      showMoreStats: false
+      showMoreStats: false,
+      isEditingName: false
     }
   ]);
   const [annualSalary, setAnnualSalary] = useState("");
   const [result, setResult] = useState(null);
-
   useEffect(() => {
     document.body.className = darkMode ? 'dark-mode' : 'light-mode';
   }, [darkMode]);
-
   const toggleDarkMode = () => setDarkMode(prev => !prev);
-
   const handleJobChange = (index, field, value) => {
     const newJobs = [...jobs];
     newJobs[index][field] = value;
     setJobs(newJobs);
   };
-
   const handleExcludedDaysChange = (index, day, checked) => {
     const newJobs = [...jobs];
     let currentExcluded = newJobs[index].excludedDays || [];
@@ -45,23 +42,21 @@ function App() {
     newJobs[index].excludedDays = currentExcluded;
     setJobs(newJobs);
   };
-
   const toggleDateRange = (index) => {
     const newJobs = [...jobs];
     newJobs[index].showDateRange = !newJobs[index].showDateRange;
     setJobs(newJobs);
   };
-
   const toggleMoreStats = (index) => {
     const newJobs = [...jobs];
     newJobs[index].showMoreStats = !newJobs[index].showMoreStats;
     setJobs(newJobs);
   };
-
   const addJob = () => {
     setJobs([
       ...jobs, 
       { 
+        jobName: `Job ${jobs.length + 1}`,
         hourlyWage: "", 
         hoursWorked: "", 
         daysWorked: "", 
@@ -70,17 +65,16 @@ function App() {
         hoursPerDay: "8",
         showDateRange: false,
         excludedDays: [],
-        showMoreStats: false
+        showMoreStats: false,
+        isEditingName: false
       }
     ]);
   };
-
   const removeJob = (index) => {
     const newJobs = [...jobs];
     newJobs.splice(index, 1);
     setJobs(newJobs);
   };
-
   const handleJobSubmit = (e) => {
     e.preventDefault();
     let totalIncome = 0;
@@ -111,7 +105,6 @@ function App() {
     });
     setResult(totalIncome);
   };
-
   const getYearlyBreakdown = (salary) => {
     const annual = parseFloat(salary) || 0;
     return {
@@ -122,7 +115,6 @@ function App() {
       yearly: annual.toFixed(2)
     };
   };
-
   return (
     <div className={`app-container ${darkMode ? "dark" : "light"}`}>
       <header className="header">
@@ -144,7 +136,7 @@ function App() {
           className={calcMode === "job" ? "active" : ""}
           onClick={() => setCalcMode("job")}
         >
-          Job Income
+          Hourly Wage
         </button>
         <button 
           className={calcMode === "yearly" ? "active" : ""}
@@ -157,7 +149,28 @@ function App() {
         <form onSubmit={handleJobSubmit} className="calc-form">
           {jobs.map((job, index) => (
             <div key={index} className="job-card">
-              <h2>Job {index + 1}</h2>
+              <div className="job-name-container">
+                {job.isEditingName ? (
+                  <div className="edit-name-group">
+                    <input 
+                      type="text"
+                      value={job.jobName}
+                      onChange={(e) => handleJobChange(index, 'jobName', e.target.value)}
+                      className="job-name-input"
+                    />
+                    <button type="button" onClick={() => handleJobChange(index, 'isEditingName', false)} className="done-btn">Done</button>
+                  </div>
+                ) : (
+                  <div className="display-name-group">
+                    <h2>{job.jobName}</h2>
+                    <button type="button" onClick={() => handleJobChange(index, 'isEditingName', true)} className="edit-icon-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-9.5 9.5a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l9.5-9.5zM11.207 2.5 13.5 4.793 12.207 6.086 9.914 3.793 11.207 2.5zM10.5 3.207 3 10.707V13h2.293l7.5-7.5L10.5 3.207z"/>
+                      </svg>
+                    </button>
+                  </div>
+                )}
+              </div>
               <div className="input-group">
                 <label>Hourly Wage ($):</label>
                 <input 
@@ -221,7 +234,7 @@ function App() {
               </div>
               <button 
                 type="button" 
-                className="toggle-btn"
+                className="show-date-range-btn"
                 onClick={() => toggleDateRange(index)}
               >
                 {job.showDateRange ? 'Hide Date Range' : 'Show Date Range'}
@@ -296,7 +309,6 @@ function App() {
         </form>
       ) : (
         <div className="yearly-calculator">
-
           <div className="input-group">
             <label>Annual Salary ($):</label>
             <input
@@ -330,5 +342,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

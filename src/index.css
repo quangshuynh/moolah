@@ -18,3 +18,10 @@ code {
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'roboto-medium';
+  src: url('../public/fonts/Roboto-Medium.ttf');
+  font-weight: normal;
+  font-style: normal;
+}

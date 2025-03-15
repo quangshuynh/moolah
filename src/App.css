@@ -339,3 +339,23 @@ h1, h2 {
 .done-btn:hover {
   background: #218838;
 }
+
+.income-breakdown {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+.income-breakdown p {
+  font-size: 18px;
+  margin: 5px 0;
+}
+.income-breakdown hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 15px 0;
+}
+.income-breakdown h2 {
+  text-align: center;
+  font-size: 22px;
+}

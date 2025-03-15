@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [calcMode, setCalcMode] = useState("job");
@@ -20,15 +21,19 @@ function App() {
   ]);
   const [annualSalary, setAnnualSalary] = useState("");
   const [result, setResult] = useState(null);
+
   useEffect(() => {
     document.body.className = darkMode ? 'dark-mode' : 'light-mode';
   }, [darkMode]);
+
   const toggleDarkMode = () => setDarkMode(prev => !prev);
+
   const handleJobChange = (index, field, value) => {
     const newJobs = [...jobs];
     newJobs[index][field] = value;
     setJobs(newJobs);
   };
+
   const handleExcludedDaysChange = (index, day, checked) => {
     const newJobs = [...jobs];
     let currentExcluded = newJobs[index].excludedDays || [];
@@ -42,16 +47,19 @@ function App() {
     newJobs[index].excludedDays = currentExcluded;
     setJobs(newJobs);
   };
+
   const toggleDateRange = (index) => {
     const newJobs = [...jobs];
     newJobs[index].showDateRange = !newJobs[index].showDateRange;
     setJobs(newJobs);
   };
+
   const toggleMoreStats = (index) => {
     const newJobs = [...jobs];
     newJobs[index].showMoreStats = !newJobs[index].showMoreStats;
     setJobs(newJobs);
   };
+
   const addJob = () => {
     setJobs([
       ...jobs, 
@@ -70,15 +78,17 @@ function App() {
       }
     ]);
   };
+
   const removeJob = (index) => {
     const newJobs = [...jobs];
     newJobs.splice(index, 1);
     setJobs(newJobs);
   };
+
   const handleJobSubmit = (e) => {
     e.preventDefault();
     let totalIncome = 0;
-    jobs.forEach(job => {
+    const jobIncomes = jobs.map(job => {
       const wage = parseFloat(job.hourlyWage || 0);
       let income = 0;
       if (job.showDateRange && job.startDate && job.endDate) {
@@ -93,18 +103,20 @@ function App() {
           }
           currentDate.setDate(currentDate.getDate() + 1);
         }
-        income += wage * count * parseFloat(job.hoursPerDay || 8);
+        income = wage * count * parseFloat(job.hoursPerDay || 8);
       } else {
         if (job.daysWorked) {
-          income += wage * parseFloat(job.daysWorked) * 8;
+          income = wage * parseFloat(job.daysWorked) * 8;
         } else if (job.hoursWorked) {
-          income += wage * parseFloat(job.hoursWorked);
+          income = wage * parseFloat(job.hoursWorked);
         }
       }
       totalIncome += income;
+      return { jobName: job.jobName, income };
     });
-    setResult(totalIncome);
+    setResult({ totalIncome, jobIncomes });
   };
+
   const getYearlyBreakdown = (salary) => {
     const annual = parseFloat(salary) || 0;
     return {
@@ -115,6 +127,7 @@ function App() {
       yearly: annual.toFixed(2)
     };
   };
+
   return (
     <div className={`app-container ${darkMode ? "dark" : "light"}`}>
       <header className="header">
@@ -158,12 +171,22 @@ function App() {
                       onChange={(e) => handleJobChange(index, 'jobName', e.target.value)}
                       className="job-name-input"
                     />
-                    <button type="button" onClick={() => handleJobChange(index, 'isEditingName', false)} className="done-btn">Done</button>
+                    <button 
+                      type="button" 
+                      onClick={() => handleJobChange(index, 'isEditingName', false)} 
+                      className="done-btn"
+                    >
+                      Done
+                    </button>
                   </div>
                 ) : (
                   <div className="display-name-group">
                     <h2>{job.jobName}</h2>
-                    <button type="button" onClick={() => handleJobChange(index, 'isEditingName', true)} className="edit-icon-btn">
+                    <button 
+                      type="button" 
+                      onClick={() => handleJobChange(index, 'isEditingName', true)} 
+                      className="edit-icon-btn"
+                    >
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-9.5 9.5a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l9.5-9.5zM11.207 2.5 13.5 4.793 12.207 6.086 9.914 3.793 11.207 2.5zM10.5 3.207 3 10.707V13h2.293l7.5-7.5L10.5 3.207z"/>
                       </svg>
@@ -303,7 +326,17 @@ function App() {
           </button>
           {result !== null && (
             <div className="result">
-              <h2>Total Income: ${result.toFixed(2)}</h2>
+              {jobs.length > 1 ? (
+                <div className="income-breakdown">
+                  {result.jobIncomes.map((job, index) => (
+                    <p key={index}>{job.jobName} Income: ${job.income.toFixed(2)}</p>
+                  ))}
+                  <hr />
+                  <h2>Total Income: ${result.totalIncome.toFixed(2)}</h2>
+                </div>
+              ) : (
+                <h2>Total Income: ${result.totalIncome.toFixed(2)}</h2>
+              )}
             </div>
           )}
         </form>
@@ -342,4 +375,5 @@ function App() {
     </div>
   );
 }
+
 export default App;

@@ -75,6 +75,12 @@ h1, h2 {
   color: #e0e0e0;
 }
 
+.app-container.dark .calc-mode-selector button.active {
+  background-color: #9b67d2;
+  color: #fff;
+}
+
+
 .calc-mode-selector button.active {
   background-color: #007bff;
   color: #fff;

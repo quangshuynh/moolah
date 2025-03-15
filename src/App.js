@@ -20,6 +20,7 @@ function App() {
     }
   ]);
   const [annualSalary, setAnnualSalary] = useState("");
+
   const [result, setResult] = useState(null);
 
   useEffect(() => {
@@ -162,6 +163,15 @@ function App() {
         <form onSubmit={handleJobSubmit} className="calc-form">
           {jobs.map((job, index) => (
             <div key={index} className="job-card">
+              {jobs.length > 1 && (
+                <button 
+                  type="button" 
+                  className="remove-icon-btn"
+                  onClick={() => removeJob(index)}
+                >
+                  &times;
+                </button>
+              )}
               <div className="job-name-container">
                 {job.isEditingName ? (
                   <div className="edit-name-group">
@@ -307,15 +317,6 @@ function App() {
                   </div>
                 </div>
               )}
-              {jobs.length > 1 && (
-                <button 
-                  type="button" 
-                  className="remove-btn"
-                  onClick={() => removeJob(index)}
-                >
-                  Remove Job
-                </button>
-              )}
             </div>
           ))}
           <button type="button" className="add-btn" onClick={addJob}>
@@ -329,7 +330,7 @@ function App() {
               {jobs.length > 1 ? (
                 <div className="income-breakdown">
                   {result.jobIncomes.map((job, index) => (
-                    <p key={index}>{job.jobName} Income: ${job.income.toFixed(2)}</p>
+                    <p key={index}>{job.jobName} income: ${job.income.toFixed(2)}</p>
                   ))}
                   <hr />
                   <h2>Total Income: ${result.totalIncome.toFixed(2)}</h2>

@@ -3,14 +3,17 @@ body {
   font-family: 'Roboto', sans-serif;
   transition: background-color 0.3s, color 0.3s;
 }
+
 body.dark-mode {
   background-color: #121212;
   color: #e0e0e0;
 }
+
 body.light-mode {
   background-color: #f0f2f5;
   color: #333;
 }
+
 .app-container {
   max-width: 800px;
   margin: 60px auto;
@@ -19,36 +22,43 @@ body.light-mode {
   position: relative;
   transition: background-color 0.3s, box-shadow 0.3s;
 }
+
 .app-container.dark {
   background-color: #1e1e1e;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
+
 .app-container.light {
   background-color: #ffffff;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
+
 .header {
   position: absolute;
   top: 10px;
   right: 10px;
 }
+
 .mode-toggle {
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
 }
+
 h1, h2 {
   font-family: 'circular-bold', sans-serif;
   text-align: center;
   margin-bottom: 20px;
 }
+
 .calc-mode-selector {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin-bottom: 20px;
 }
+
 .calc-mode-selector button {
   padding: 8px 16px;
   border: none;
@@ -59,20 +69,26 @@ h1, h2 {
   background: #ccc;
   color: #333;
 }
+
 .app-container.dark .calc-mode-selector button {
   background: #333;
   color: #e0e0e0;
 }
+
 .calc-mode-selector button.active {
   background-color: #007bff;
   color: #fff;
 }
+
 .calc-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
+
+
 .job-card {
+  position: relative;
   border: 1px solid;
   border-color: inherit;
   padding: 20px;
@@ -80,15 +96,19 @@ h1, h2 {
   background: inherit;
   transition: background-color 0.3s, border-color 0.3s;
 }
+
+
 .input-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
 }
+
 .input-group label {
   margin-bottom: 5px;
   font-weight: 500;
 }
+
 .input-group input,
 .input-group select {
   padding: 10px;
@@ -99,38 +119,45 @@ h1, h2 {
   outline: none;
   transition: border 0.3s, background 0.3s, color 0.3s;
 }
+
 .app-container.dark .input-group input,
 .app-container.dark .input-group select {
   background: #2c2c2c;
   color: #e0e0e0;
   border-color: #555;
 }
+
 .app-container.light .input-group input,
 .app-container.light .input-group select {
   background: #fff;
   color: #333;
   border-color: #ccc;
 }
+
 .input-group input:focus,
 .input-group select:focus {
   border-color: #bb86fc;
 }
+
 .app-container.dark .input-group input:disabled,
 .app-container.dark .input-group select:disabled {
   background-color: #333;
   border-color: #444;
   color: #888;
 }
+
 .app-container.light .input-group input:disabled,
 .app-container.light .input-group select:disabled {
   background-color: #e9ecef;
   border-color: #ccc;
   color: #666;
 }
+
 .horizontal-group {
   display: flex;
   gap: 20px;
 }
+
 .show-date-range-btn {
   background: #ffc107;
   border: none;
@@ -143,9 +170,11 @@ h1, h2 {
   color: #121212;
   transition: background 0.3s;
 }
+
 .show-date-range-btn:hover {
   background: #e0a800;
 }
+
 .toggle-stats-btn {
   background: transparent;
   border: 2px solid #007bff;
@@ -157,18 +186,22 @@ h1, h2 {
   margin-bottom: 10px;
   transition: all 0.3s;
 }
+
 .app-container.dark .toggle-stats-btn {
   border-color: #bb86fc;
   color: #bb86fc;
 }
+
 .toggle-stats-btn:hover {
   background-color: #007bff;
   color: #fff;
 }
+
 .app-container.dark .toggle-stats-btn:hover {
   background-color: #9b67d2;
   color: #fff;
 }
+
 .salary-breakdown-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -176,6 +209,7 @@ h1, h2 {
   margin-top: 10px;
   margin-bottom: 15px;
 }
+
 .breakdown-button {
   flex: 1;
   background: #007bff;
@@ -187,48 +221,59 @@ h1, h2 {
   cursor: default;
   transition: background 0.3s, transform 0.2s;
 }
+
 .breakdown-button:hover {
   background: #0069d9;
   transform: translateY(-2px);
 }
+
 .app-container.dark .breakdown-button {
   background: #bb86fc;
 }
+
 .app-container.dark .breakdown-button:hover {
   background: #9b67d2;
 }
+
 .date-range {
   margin-top: 10px;
   border-top: 1px solid;
   border-color: inherit;
   padding-top: 15px;
 }
+
 .exclude-days {
   margin-top: 15px;
 }
+
 .exclude-days label {
   font-weight: 500;
   margin-bottom: 5px;
   display: block;
 }
+
 .checkbox-group {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
+
 .checkbox-group label {
   font-size: 14px;
   cursor: pointer;
 }
+
 .salary-breakdown {
   background: rgba(0, 0, 0, 0.05);
   padding: 10px;
   border-radius: 4px;
   margin-top: 10px;
 }
+
 .app-container.dark .salary-breakdown {
   background: rgba(255, 255, 255, 0.1);
 }
+
 .eight-hours-note {
   background: rgba(0, 0, 0, 0.05);
   padding: 15px;
@@ -236,9 +281,11 @@ h1, h2 {
   margin-top: -10px;
   margin-bottom: -10px;
 }
+
 .app-container.dark .eight-hours-note {
   background: rgba(255, 255, 255, 0.1);
 }
+
 .remove-btn {
   background: #dc3545;
   color: #fff;
@@ -252,9 +299,11 @@ h1, h2 {
   margin-left: 5px;
   font-family: 'roboto-medium', sans-serif;
 }
+
 .remove-btn:hover {
   background: #c82333;
 }
+
 .add-btn, .calc-btn {
   background: #28a745;
   color: #fff;
@@ -265,54 +314,66 @@ h1, h2 {
   font-size: 16px;
   transition: background 0.3s;
 }
+
 .add-btn:hover, .calc-btn:hover {
   background: #218838;
 }
+
 .calc-btn {
   background: #007bff;
 }
+
 .calc-btn:hover {
   background: #0069d9;
 }
+
 .result {
   margin-top: 30px;
   text-align: center;
   font-size: 24px;
 }
+
 .yearly-calculator {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
+
 .job-name-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .display-name-group {
   display: flex;
   align-items: center;
 }
+
 .edit-icon-btn {
   background: transparent;
   border: none;
   cursor: pointer;
   margin-left: 8px;
 }
+
 .edit-icon-btn svg {
   width: 20px;
   height: 20px;
   fill: #007bff;
   transition: transform 0.3s;
 }
+
 .edit-icon-btn:hover svg {
   transform: scale(1.1);
 }
+
 .edit-name-group {
   display: flex;
   align-items: center;
   gap: 8px;
 }
+
 .job-name-input {
   font-size: 1.2rem;
   padding: 4px 8px;
@@ -323,6 +384,7 @@ h1, h2 {
   font-family: 'circular-bold', sans-serif;
   margin-bottom: 10px;
 }
+
 .done-btn {
   background: #28a745;
   border: none;
@@ -336,6 +398,7 @@ h1, h2 {
   font-size: 14px;
   font-family: 'roboto-medium', sans-serif;
 }
+
 .done-btn:hover {
   background: #218838;
 }
@@ -346,16 +409,47 @@ h1, h2 {
   border-radius: 8px;
   margin-top: 20px;
 }
+
 .income-breakdown p {
   font-size: 18px;
   margin: 5px 0;
 }
+
 .income-breakdown hr {
   border: none;
   border-top: 1px solid #ccc;
   margin: 15px 0;
 }
+
 .income-breakdown h2 {
   text-align: center;
   font-size: 22px;
+}
+
+.remove-icon-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 1px solid;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.app-container.light .remove-icon-btn {
+  border-color: #dc3545;
+  background-color: #ffe5e5;
+  color: #dc3545;
+}
+
+.app-container.dark .remove-icon-btn {
+  border-color: #f28b82;
+  background-color: #d93025;
+  color: #fff;
+}
+
+.remove-icon-btn:hover {
+  transform: scale(1.1);
 }

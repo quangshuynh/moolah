@@ -4,6 +4,7 @@ import './App.css';
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [calcMode, setCalcMode] = useState("job");
+  const [jobCount, setJobCount] = useState(1);
   const [jobs, setJobs] = useState([
     { 
       jobName: "Job 1",
@@ -20,7 +21,6 @@ function App() {
     }
   ]);
   const [annualSalary, setAnnualSalary] = useState("");
-
   const [result, setResult] = useState(null);
 
   useEffect(() => {
@@ -62,10 +62,12 @@ function App() {
   };
 
   const addJob = () => {
+    const newJobCount = jobCount + 1;
+    setJobCount(newJobCount);
     setJobs([
       ...jobs, 
       { 
-        jobName: `Job ${jobs.length + 1}`,
+        jobName: `Job ${newJobCount}`,
         hourlyWage: "", 
         hoursWorked: "", 
         daysWorked: "", 

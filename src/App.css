@@ -10,7 +10,7 @@ body.dark-mode {
 }
 
 body.light-mode {
-  background-color: #f0f2f5;
+  background-color: #d2d3db;
   color: #333;
 }
 
@@ -29,7 +29,7 @@ body.light-mode {
 }
 
 .app-container.light {
-  background-color: #ffffff;
+  background-color: #f0f2f5;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -135,9 +135,9 @@ h1, h2 {
 
 .app-container.light .input-group input,
 .app-container.light .input-group select {
-  background: #fff;
+  background: #fafafa;
   color: #333;
-  border-color: #ccc;
+  border-color: #fafafa;
 }
 
 .input-group input:focus,
@@ -361,6 +361,7 @@ h1, h2 {
   border: none;
   cursor: pointer;
   margin-left: 8px;
+  margin-bottom: 6px;
 }
 
 .edit-icon-btn svg {

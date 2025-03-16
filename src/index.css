@@ -25,3 +25,10 @@ code {
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'opensans';
+  src: url('../public/fonts/OpenSans-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}

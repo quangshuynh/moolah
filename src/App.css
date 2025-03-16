@@ -112,6 +112,7 @@ h1, h2 {
 
 .input-group label {
   margin-bottom: 5px;
+  margin-left: 1px;
   font-weight: 500;
 }
 
@@ -488,6 +489,7 @@ h1, h2 {
   padding-top: 20px;
   border-top: 1px solid #ccc;
   font-size: 14px;
+  font-family: 'opensans', sans-serif;
 }
 
 .app-container.dark .footer {

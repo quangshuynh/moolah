@@ -570,5 +570,6 @@ h1, h2 {
   .money-logo svg {
     width: 24px;
     height: 24px;
+    margin-top: 5px;
   }
 }

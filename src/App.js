@@ -22,6 +22,8 @@ function App() {
   ]);
   const [annualSalary, setAnnualSalary] = useState("");
   const [result, setResult] = useState(null);
+  const [customTimeValue, setCustomTimeValue] = useState("");
+  const [customTimeUnit, setCustomTimeUnit] = useState("seconds");
 
   useEffect(() => {
     document.body.className = darkMode ? 'dark-mode' : 'light-mode';
@@ -129,6 +131,21 @@ function App() {
       monthly: (annual / 12).toFixed(2),
       yearly: annual.toFixed(2)
     };
+  };
+
+  const getCustomSalary = (annual, timeValue, unit) => {
+    const parsedAnnual = parseFloat(annual) || 0;
+    const parsedTime = parseFloat(timeValue) || 0;
+    const multipliers = {
+      seconds: 1 / (2080 * 3600),
+      minutes: 1 / (2080 * 60),
+      hours: 1 / 2080,
+      days: 1 / 260,
+      weeks: 1 / 52,
+      months: 1 / 12,
+      years: 1,
+    };
+    return parsedAnnual * (multipliers[unit] * parsedTime);
   };
 
   return (
@@ -323,7 +340,7 @@ function App() {
                   </div>
                   <div className="exclude-days">
                     <label>Exclude Days:</label>
-                    <div className="checkbox-group">
+                    <div className="exclude-days-checkbox-group">
                       {["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map(day => (
                         <label key={day}>
                           <input 
@@ -388,6 +405,31 @@ function App() {
                     <p>Weekly: ${breakdown.weekly}</p>
                     <p>Monthly: ${breakdown.monthly}</p>
                     <p>Yearly: ${breakdown.yearly}</p>
+                    <div className="custom-breakdown" style={{ marginTop: '10px' }}>
+                      <p>
+                        <input 
+                          type="number" 
+                          value={customTimeValue}
+                          onChange={(e) => setCustomTimeValue(e.target.value)}
+                          placeholder="0"
+                          style={{ marginRight: '8px', width: '70px' }}
+                        />
+                        <select 
+                          value={customTimeUnit} 
+                          onChange={(e) => setCustomTimeUnit(e.target.value)}
+                          style={{ marginRight: '8px' }}
+                        >
+                          <option value="seconds">Seconds</option>
+                          <option value="minutes">Minutes</option>
+                          <option value="hours">Hours</option>
+                          <option value="days">Days</option>
+                          <option value="weeks">Weeks</option>
+                          <option value="months">Months</option>
+                          <option value="years">Years</option>
+                        </select>
+                        = ${getCustomSalary(annualSalary, customTimeValue, customTimeUnit).toFixed(2)}
+                      </p>
+                    </div>
                   </>
                 );
               })()}
@@ -396,7 +438,7 @@ function App() {
         </div>
       )}
       <footer className="footer">
-      © {new Date().getFullYear()} Quang
+        © {new Date().getFullYear()} Quang
       </footer>
     </div>
   );

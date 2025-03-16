@@ -1,3 +1,4 @@
+/* general stuff */
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
@@ -52,6 +53,7 @@ h1, h2 {
   margin-bottom: 20px;
 }
 
+/* hourly wage mode vs yearly mode buttons */
 .calc-mode-selector {
   display: flex;
   justify-content: center;
@@ -92,7 +94,7 @@ h1, h2 {
   gap: 20px;
 }
 
-
+/* hourly wage mode job items/cards */
 .job-card {
   position: relative;
   border: 1px solid;
@@ -165,6 +167,7 @@ h1, h2 {
   gap: 20px;
 }
 
+/* date range button inside job card */
 .show-date-range-btn {
   background: #ffc107;
   border: none;
@@ -182,6 +185,7 @@ h1, h2 {
   background: #e0a800;
 }
 
+/* toggle 8 hour stats button inside job card */
 .toggle-stats-btn {
   background: transparent;
   border: 2px solid #007bff;
@@ -249,6 +253,7 @@ h1, h2 {
   padding-top: 15px;
 }
 
+/* excluding days from date range */
 .exclude-days {
   margin-top: 15px;
 }
@@ -256,7 +261,7 @@ h1, h2 {
 .exclude-days label {
   font-weight: 500;
   margin-bottom: 5px;
-  display: block;
+  display: flexbox;
 }
 
 .checkbox-group {
@@ -270,6 +275,7 @@ h1, h2 {
   cursor: pointer;
 }
 
+/* yearly mode salary breakdown */
 .salary-breakdown {
   background: rgba(0, 0, 0, 0.05);
   padding: 10px;
@@ -293,6 +299,7 @@ h1, h2 {
   background: rgba(255, 255, 255, 0.1);
 }
 
+/* remove button for several job cards */
 .remove-btn {
   background: #dc3545;
   color: #fff;
@@ -311,6 +318,35 @@ h1, h2 {
   background: #c82333;
 }
 
+.remove-icon-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 1px solid;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.app-container.light .remove-icon-btn {
+  border-color: #dc3545;
+  background-color: #ffe5e5;
+  color: #dc3545;
+}
+
+.app-container.dark .remove-icon-btn {
+  border-color: #f28b82;
+  background-color: #d93025;
+  color: #fff;
+}
+
+.remove-icon-btn:hover {
+  transform: scale(1.1);
+}
+
+/* add button for job cards */
 .add-btn, .calc-btn {
   background: #28a745;
   color: #fff;
@@ -326,6 +362,7 @@ h1, h2 {
   background: #218838;
 }
 
+/* button for calculating total */
 .calc-btn {
   background: #007bff;
 }
@@ -334,12 +371,14 @@ h1, h2 {
   background: #0069d9;
 }
 
+/* results!! */
 .result {
   margin-top: 30px;
   text-align: center;
   font-size: 24px;
 }
 
+/* input for yearly salary calculator mode */
 .yearly-calculator {
   display: flex;
   flex-direction: column;
@@ -357,6 +396,7 @@ h1, h2 {
   align-items: center;
 }
 
+/* edit button for changing job name */
 .edit-icon-btn {
   background: transparent;
   border: none;
@@ -393,6 +433,7 @@ h1, h2 {
   margin-bottom: 10px;
 }
 
+/* done button when finished editing job name */
 .done-btn {
   background: #28a745;
   border: none;
@@ -411,6 +452,7 @@ h1, h2 {
   background: #218838;
 }
 
+/* income breakdown for one or more jobs */
 .income-breakdown {
   background: rgba(0, 0, 0, 0.05);
   padding: 20px;
@@ -434,34 +476,7 @@ h1, h2 {
   font-size: 22px;
 }
 
-.remove-icon-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  border: 1px solid;
-  border-radius: 4px;
-  padding: 4px 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.app-container.light .remove-icon-btn {
-  border-color: #dc3545;
-  background-color: #ffe5e5;
-  color: #dc3545;
-}
-
-.app-container.dark .remove-icon-btn {
-  border-color: #f28b82;
-  background-color: #d93025;
-  color: #fff;
-}
-
-.remove-icon-btn:hover {
-  transform: scale(1.1);
-}
-
+/*header kinda */
 .title-container {
   display: flex;
   justify-content: center;
@@ -483,6 +498,7 @@ h1, h2 {
   vertical-align: middle;
 }
 
+/* footer */
 .footer {
   text-align: center;
   margin-top: 40px;
@@ -496,6 +512,87 @@ h1, h2 {
   border-top: 1px solid #555;
 }
 
+/* for inputting custom duration for yearly salary mode */
+.custom-breakdown {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 15px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.app-container.light .custom-breakdown {
+  background: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.custom-breakdown p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.app-container.dark .custom-breakdown p {
+  color: #bb86fc;
+}
+
+.custom-breakdown input, 
+.custom-breakdown select {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #007bff;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.app-container.dark .custom-breakdown input, 
+.app-container.dark .custom-breakdown select {
+  border-color: #bb86fc;
+  background: #222;
+  color: #e0e0e0;
+}
+
+.custom-breakdown input:focus, 
+.custom-breakdown select:focus {
+  border-color: #0056b3;
+}
+
+.custom-breakdown select {
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.app-container.dark .custom-breakdown select {
+  background: #bb86fc;
+}
+
+.custom-breakdown select:hover {
+  background: #0056b3;
+}
+
+.custom-breakdown-result {
+  font-size: 22px;
+  font-weight: bold;
+  color: #28a745;
+  margin-top: 15px;
+  background: rgba(40, 167, 69, 0.1);
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.app-container.dark .custom-breakdown-result {
+  color: #66ff99;
+  background: rgba(102, 255, 153, 0.1);
+}
+
+/*responsive stuff */
 /* tablets and small desktops */
 @media (max-width: 768px) {
   .app-container {

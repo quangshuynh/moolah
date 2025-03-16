@@ -460,6 +460,39 @@ h1, h2 {
   transform: scale(1.1);
 }
 
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  font-family: 'circular-bold', sans-serif;
+  font-size: 2rem;
+}
+
+.money-logo {
+  margin-right: 5px;
+  margin-bottom: 7px;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.app-container.dark .footer {
+  border-top: 1px solid #555;
+}
+
 /* tablets and small desktops */
 @media (max-width: 768px) {
   .app-container {
@@ -484,6 +517,14 @@ h1, h2 {
 
   h1, h2 {
     font-size: 1.8rem;
+  }
+
+  .app-title {
+    font-size: 1.8rem;
+  }
+  .money-logo svg {
+    width: 28px;
+    height: 28px;
   }
 }
 
@@ -518,5 +559,13 @@ h1, h2 {
   .salary-breakdown-buttons,
   .checkbox-group {
     flex-direction: column;
+  }
+
+  .app-title {
+    font-size: 1.6rem;
+  }
+  .money-logo svg {
+    width: 24px;
+    height: 24px;
   }
 }

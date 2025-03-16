@@ -407,12 +407,13 @@ function App() {
                     <p>Yearly: ${breakdown.yearly}</p>
                     <div className="custom-breakdown" style={{ marginTop: '10px' }}>
                       <p>
+                        Custom Time: 
                         <input 
                           type="number" 
                           value={customTimeValue}
                           onChange={(e) => setCustomTimeValue(e.target.value)}
                           placeholder="0"
-                          style={{ marginRight: '8px', width: '70px' }}
+                          style={{ marginLeft: '10px', marginRight: '8px', width: '70px' }}
                         />
                         <select 
                           value={customTimeUnit} 

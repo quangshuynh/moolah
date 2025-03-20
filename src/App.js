@@ -238,6 +238,7 @@ function App() {
                   type="number"
                   placeholder="Enter hourly wage"
                   min="0"
+                  step="0.01"
                   value={job.hourlyWage}
                   onChange={(e) => handleJobChange(index, 'hourlyWage', e.target.value)}
                 />
@@ -288,7 +289,7 @@ function App() {
                   <label>Hours Worked:</label>
                   <input 
                     type="number"
-                    //placeholder="Enter hours per day"
+                    placeholder="Enter hours per day"
                     value={job.hoursWorked}
                     min="0"
                     max="24"
@@ -377,10 +378,10 @@ function App() {
                     <p key={index}>{job.jobName} Income: ${job.income.toFixed(2)}</p>
                   ))}
                   <hr />
-                  <h2>Total Income: ${result.totalIncome.toFixed(2)}</h2>
+                  <h2>Total Weekly Income: ${result.totalIncome.toFixed(2)}</h2>
                 </div>
               ) : (
-                <h2>Total Income: ${result.totalIncome.toFixed(2)}</h2>
+                <h2>Total Weekly Income: ${result.totalIncome.toFixed(2)}</h2>
               )}
             </div>
           )}
@@ -393,6 +394,7 @@ function App() {
               type="number"
               placeholder="Enter your annual salary"
               value={annualSalary}
+              min="0"
               onChange={(e) => setAnnualSalary(e.target.value)}
             />
           </div>

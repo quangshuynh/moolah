@@ -237,6 +237,7 @@ function App() {
                 <input 
                   type="number"
                   placeholder="Enter hourly wage"
+                  min="0"
                   value={job.hourlyWage}
                   onChange={(e) => handleJobChange(index, 'hourlyWage', e.target.value)}
                 />
@@ -287,8 +288,10 @@ function App() {
                   <label>Hours Worked:</label>
                   <input 
                     type="number"
-                    placeholder="Enter hours per day"
+                    //placeholder="Enter hours per day"
                     value={job.hoursWorked}
+                    min="0"
+                    max="24"
                     disabled={job.showDateRange}
                     onChange={(e) => handleJobChange(index, 'hoursWorked', e.target.value)}
                   />
@@ -299,6 +302,8 @@ function App() {
                     type="number"
                     placeholder="Enter days per week"
                     value={job.daysWorked}
+                    min="0"
+                    max="7"
                     disabled={job.showDateRange}
                     onChange={(e) => handleJobChange(index, 'daysWorked', e.target.value)}
                   />

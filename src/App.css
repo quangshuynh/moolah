@@ -592,6 +592,64 @@ h1, h2 {
   background: rgba(102, 255, 153, 0.1);
 }
 
+
+/* conversion button for hourly wage mode */
+.interval-selector {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.interval-selector button {
+  background: linear-gradient(145deg, #007bff, #0056b3);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.interval-selector button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.interval-selector button.active {
+  background: linear-gradient(145deg, #00c6ff, #0072ff);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+}
+
+.custom-interval input,
+.custom-interval select,
+.custom-breakdown input,
+.custom-breakdown select {
+  border: 2px solid #007bff;
+  border-radius: 30px;
+  padding: 10px 15px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.custom-interval input:focus,
+.custom-interval select:focus,
+.custom-breakdown input:focus,
+.custom-breakdown select:focus {
+  border-color: #0072ff;
+  box-shadow: 0 0 8px rgba(0, 114, 255, 0.5);
+}
+
+.custom-interval input:focus,
+.custom-interval select:focus {
+  border-color: #0072ff;
+  box-shadow: 0 0 8px rgba(0, 114, 255, 0.5);
+}
+
 /*responsive stuff */
 /* tablets and small desktops */
 @media (max-width: 768px) {

@@ -25,6 +25,9 @@ function App() {
   const [customTimeValue, setCustomTimeValue] = useState("");
   const [customTimeUnit, setCustomTimeUnit] = useState("seconds");
 
+  const [incomeInterval, setIncomeInterval] = useState("weekly"); 
+  const [customIncomeValue, setCustomIncomeValue] = useState("");
+  const [customIncomeUnit, setCustomIncomeUnit] = useState("weeks");
   useEffect(() => {
     document.body.className = darkMode ? 'dark-mode' : 'light-mode';
   }, [darkMode]);
@@ -120,6 +123,9 @@ function App() {
       return { jobName: job.jobName, income };
     });
     setResult({ totalIncome, jobIncomes });
+    setIncomeInterval("weekly");
+    setCustomIncomeValue("");
+    setCustomIncomeUnit("weeks");
   };
 
   const getYearlyBreakdown = (salary) => {
@@ -148,6 +154,38 @@ function App() {
     return parsedAnnual * (multipliers[unit] * parsedTime);
   };
 
+  const getConvertedIncome = () => {
+    if (!result) return 0;
+    const weeklyIncome = result.totalIncome;
+    switch(incomeInterval) {
+      case "weekly":
+        return weeklyIncome;
+      case "monthly":
+        return weeklyIncome * (52 / 12);
+      case "annual":
+        return weeklyIncome * 52;
+      case "custom": {
+        const value = parseFloat(customIncomeValue) || 0;
+        switch(customIncomeUnit) {
+          case "weeks":
+            return weeklyIncome * value;
+          case "months":
+            return weeklyIncome * (52 / 12) * value;
+          case "annual":
+            return weeklyIncome * 52 * value;
+          case "days":
+            return (weeklyIncome / 7) * value;
+          default:
+            return weeklyIncome;
+        }
+      }
+      default:
+        return weeklyIncome;
+    }
+  };
+
+  const convertedIncome = getConvertedIncome();
+
   return (
     <div className={`app-container ${darkMode ? "dark" : "light"}`}>
       <header className="header">
@@ -166,9 +204,9 @@ function App() {
       <div className="title-container">
         <h1 className="app-title">
           <span className="money-logo">
-          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
-            <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z"/>
-          </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" className="bi bi-currency-dollar" viewBox="0 0 16 16">
+              <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z"/>
+            </svg>
           </span>
           Moolah
         </h1>
@@ -243,17 +281,6 @@ function App() {
                   onChange={(e) => handleJobChange(index, 'hourlyWage', e.target.value)}
                 />
               </div>
-            {/* {!job.showDateRange && (
-                <div className="input-group">
-                  <label>Hours Per Day:</label>
-                  <input 
-                    type="number"
-                    placeholder="Enter hours per day"
-                    value={job.hoursPerDay}
-                    onChange={(e) => handleJobChange(index, 'hoursPerDay', e.target.value)}
-                  />
-                </div>
-              )} */}
               {job.hourlyWage && parseFloat(job.hourlyWage) > 0 && (
                 <>
                   <button 
@@ -275,7 +302,7 @@ function App() {
                         Weekly: ${(parseFloat(job.hourlyWage) * 40).toFixed(2)}
                       </button>
                       <button type="button" className="breakdown-button">
-                        Monthly: ${(parseFloat(job.hourlyWage) * 160).toFixed(2)}
+                        Monthly: ${((parseFloat(job.hourlyWage) * 2080) / 12).toFixed(2)}
                       </button>
                       <button type="button" className="breakdown-button">
                         Yearly: ${(parseFloat(job.hourlyWage) * 2080).toFixed(2)}
@@ -378,10 +405,114 @@ function App() {
                     <p key={index}>{job.jobName} Income: ${job.income.toFixed(2)}</p>
                   ))}
                   <hr />
-                  <h2>Total Weekly Income: ${result.totalIncome.toFixed(2)}</h2>
+                  <div className="interval-selector">
+                    <button 
+                      type="button" 
+                      className={incomeInterval === "weekly" ? "active" : ""}
+                      onClick={() => setIncomeInterval("weekly")}
+                    >
+                      Weekly
+                    </button>
+                    <button 
+                      type="button" 
+                      className={incomeInterval === "monthly" ? "active" : ""}
+                      onClick={() => setIncomeInterval("monthly")}
+                    >
+                      Monthly
+                    </button>
+                    <button 
+                      type="button" 
+                      className={incomeInterval === "annual" ? "active" : ""}
+                      onClick={() => setIncomeInterval("annual")}
+                    >
+                      Annual
+                    </button>
+                    <button 
+                      type="button" 
+                      className={incomeInterval === "custom" ? "active" : ""}
+                      onClick={() => setIncomeInterval("custom")}
+                    >
+                      Custom
+                    </button>
+                  </div>
+                  {incomeInterval === "custom" && (
+                    <div className="custom-interval">
+                      <input 
+                        type="number" 
+                        value={customIncomeValue}
+                        onChange={(e) => setCustomIncomeValue(e.target.value)}
+                        placeholder="Enter value"
+                        style={{ marginRight: '8px', width: '70px' }}
+                      />
+                      <select 
+                        value={customIncomeUnit} 
+                        onChange={(e) => setCustomIncomeUnit(e.target.value)}
+                      >
+                        <option value="weeks">Weeks</option>
+                        <option value="months">Months</option>
+                        <option value="annual">Years</option>
+                        <option value="days">Days</option>
+                      </select>
+                    </div>
+                  )}
+                  <h2>Total {incomeInterval.charAt(0).toUpperCase() + incomeInterval.slice(1)} Income: ${convertedIncome.toFixed(2)}</h2>
                 </div>
               ) : (
-                <h2>Total Weekly Income: ${result.totalIncome.toFixed(2)}</h2>
+                <>
+                  <div className="income-breakdown">
+                    <div className="interval-selector">
+                      <button 
+                        type="button" 
+                        className={incomeInterval === "weekly" ? "active" : ""}
+                        onClick={() => setIncomeInterval("weekly")}
+                      >
+                        Weekly
+                      </button>
+                      <button 
+                        type="button" 
+                        className={incomeInterval === "monthly" ? "active" : ""}
+                        onClick={() => setIncomeInterval("monthly")}
+                      >
+                        Monthly
+                      </button>
+                      <button 
+                        type="button" 
+                        className={incomeInterval === "annual" ? "active" : ""}
+                        onClick={() => setIncomeInterval("annual")}
+                      >
+                        Annual
+                      </button>
+                      <button 
+                        type="button" 
+                        className={incomeInterval === "custom" ? "active" : ""}
+                        onClick={() => setIncomeInterval("custom")}
+                      >
+                        Custom
+                      </button>
+                    </div>
+                    {incomeInterval === "custom" && (
+                      <div className="custom-interval">
+                        <input 
+                          type="number" 
+                          value={customIncomeValue}
+                          onChange={(e) => setCustomIncomeValue(e.target.value)}
+                          placeholder="Enter value"
+                          style={{ marginRight: '8px', width: '70px' }}
+                        />
+                        <select 
+                          value={customIncomeUnit} 
+                          onChange={(e) => setCustomIncomeUnit(e.target.value)}
+                        >
+                          <option value="weeks">Weeks</option>
+                          <option value="months">Months</option>
+                          <option value="annual">Years</option>
+                          <option value="days">Days</option>
+                        </select>
+                      </div>
+                    )}
+                    <h2>Total {incomeInterval.charAt(0).toUpperCase() + incomeInterval.slice(1)} Income: ${convertedIncome.toFixed(2)}</h2>
+                  </div>
+                </>
               )}
             </div>
           )}

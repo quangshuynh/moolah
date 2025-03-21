@@ -24,10 +24,12 @@ function App() {
   const [result, setResult] = useState(null);
   const [customTimeValue, setCustomTimeValue] = useState("");
   const [customTimeUnit, setCustomTimeUnit] = useState("seconds");
-
   const [incomeInterval, setIncomeInterval] = useState("weekly"); 
   const [customIncomeValue, setCustomIncomeValue] = useState("");
   const [customIncomeUnit, setCustomIncomeUnit] = useState("weeks");
+
+  const hasDateRange = jobs.some(job => job.showDateRange);
+
   useEffect(() => {
     document.body.className = darkMode ? 'dark-mode' : 'light-mode';
   }, [darkMode]);
@@ -402,117 +404,133 @@ function App() {
               {jobs.length > 1 ? (
                 <div className="income-breakdown">
                   {result.jobIncomes.map((job, index) => (
-                    <p key={index}>{job.jobName} Income: ${job.income.toFixed(2)}</p>
+                    <p key={index}>
+                      {job.jobName} Income: ${job.income.toFixed(2)}
+                    </p>
                   ))}
                   <hr />
-                  <div className="interval-selector">
-                    <button 
-                      type="button" 
-                      className={incomeInterval === "weekly" ? "active" : ""}
-                      onClick={() => setIncomeInterval("weekly")}
-                    >
-                      Weekly
-                    </button>
-                    <button 
-                      type="button" 
-                      className={incomeInterval === "monthly" ? "active" : ""}
-                      onClick={() => setIncomeInterval("monthly")}
-                    >
-                      Monthly
-                    </button>
-                    <button 
-                      type="button" 
-                      className={incomeInterval === "annual" ? "active" : ""}
-                      onClick={() => setIncomeInterval("annual")}
-                    >
-                      Annual
-                    </button>
-                    <button 
-                      type="button" 
-                      className={incomeInterval === "custom" ? "active" : ""}
-                      onClick={() => setIncomeInterval("custom")}
-                    >
-                      Custom
-                    </button>
-                  </div>
-                  {incomeInterval === "custom" && (
-                    <div className="custom-interval">
-                      <input 
-                        type="number" 
-                        value={customIncomeValue}
-                        onChange={(e) => setCustomIncomeValue(e.target.value)}
-                        placeholder="Enter value"
-                        style={{ marginRight: '8px', width: '70px' }}
-                      />
-                      <select 
-                        value={customIncomeUnit} 
-                        onChange={(e) => setCustomIncomeUnit(e.target.value)}
-                      >
-                        <option value="weeks">Weeks</option>
-                        <option value="months">Months</option>
-                        <option value="annual">Years</option>
-                        <option value="days">Days</option>
-                      </select>
-                    </div>
+                  {hasDateRange ? (
+                    <h2>Total Income: ${result.totalIncome.toFixed(2)}</h2>
+                  ) : (
+                    <>
+                      <div className="interval-selector">
+                        <button 
+                          type="button" 
+                          className={incomeInterval === "weekly" ? "active" : ""}
+                          onClick={() => setIncomeInterval("weekly")}
+                        >
+                          Weekly
+                        </button>
+                        <button 
+                          type="button" 
+                          className={incomeInterval === "monthly" ? "active" : ""}
+                          onClick={() => setIncomeInterval("monthly")}
+                        >
+                          Monthly
+                        </button>
+                        <button 
+                          type="button" 
+                          className={incomeInterval === "annual" ? "active" : ""}
+                          onClick={() => setIncomeInterval("annual")}
+                        >
+                          Annual
+                        </button>
+                        <button 
+                          type="button" 
+                          className={incomeInterval === "custom" ? "active" : ""}
+                          onClick={() => setIncomeInterval("custom")}
+                        >
+                          Custom
+                        </button>
+                      </div>
+                      {incomeInterval === "custom" && (
+                        <div className="custom-interval">
+                          <input 
+                            type="number" 
+                            value={customIncomeValue}
+                            onChange={(e) => setCustomIncomeValue(e.target.value)}
+                            placeholder="Enter value"
+                            style={{ marginRight: '8px', width: '70px' }}
+                          />
+                          <select 
+                            value={customIncomeUnit} 
+                            onChange={(e) => setCustomIncomeUnit(e.target.value)}
+                          >
+                            <option value="weeks">Weeks</option>
+                            <option value="months">Months</option>
+                            <option value="annual">Years</option>
+                            <option value="days">Days</option>
+                          </select>
+                        </div>
+                      )}
+                      <h2>
+                        Total {incomeInterval.charAt(0).toUpperCase() + incomeInterval.slice(1)} Income: ${convertedIncome.toFixed(2)}
+                      </h2>
+                    </>
                   )}
-                  <h2>Total {incomeInterval.charAt(0).toUpperCase() + incomeInterval.slice(1)} Income: ${convertedIncome.toFixed(2)}</h2>
                 </div>
               ) : (
-                <>
-                  <div className="income-breakdown">
-                    <div className="interval-selector">
-                      <button 
-                        type="button" 
-                        className={incomeInterval === "weekly" ? "active" : ""}
-                        onClick={() => setIncomeInterval("weekly")}
-                      >
-                        Weekly
-                      </button>
-                      <button 
-                        type="button" 
-                        className={incomeInterval === "monthly" ? "active" : ""}
-                        onClick={() => setIncomeInterval("monthly")}
-                      >
-                        Monthly
-                      </button>
-                      <button 
-                        type="button" 
-                        className={incomeInterval === "annual" ? "active" : ""}
-                        onClick={() => setIncomeInterval("annual")}
-                      >
-                        Annual
-                      </button>
-                      <button 
-                        type="button" 
-                        className={incomeInterval === "custom" ? "active" : ""}
-                        onClick={() => setIncomeInterval("custom")}
-                      >
-                        Custom
-                      </button>
-                    </div>
-                    {incomeInterval === "custom" && (
-                      <div className="custom-interval">
-                        <input 
-                          type="number" 
-                          value={customIncomeValue}
-                          onChange={(e) => setCustomIncomeValue(e.target.value)}
-                          placeholder="Enter value"
-                          style={{ marginRight: '8px', width: '70px' }}
-                        />
-                        <select 
-                          value={customIncomeUnit} 
-                          onChange={(e) => setCustomIncomeUnit(e.target.value)}
+                <div className="income-breakdown">
+                  {hasDateRange ? (
+                    <h2>Total Income: ${result.totalIncome.toFixed(2)}</h2>
+                  ) : (
+                    <>
+                      <div className="interval-selector">
+                        <button 
+                          type="button" 
+                          className={incomeInterval === "weekly" ? "active" : ""}
+                          onClick={() => setIncomeInterval("weekly")}
                         >
-                          <option value="weeks">Weeks</option>
-                          <option value="months">Months</option>
-                          <option value="annual">Years</option>
-                          <option value="days">Days</option>
-                        </select>
+                          Weekly
+                        </button>
+                        <button 
+                          type="button" 
+                          className={incomeInterval === "monthly" ? "active" : ""}
+                          onClick={() => setIncomeInterval("monthly")}
+                        >
+                          Monthly
+                        </button>
+                        <button 
+                          type="button" 
+                          className={incomeInterval === "annual" ? "active" : ""}
+                          onClick={() => setIncomeInterval("annual")}
+                        >
+                          Annual
+                        </button>
+                        <button 
+                          type="button" 
+                          className={incomeInterval === "custom" ? "active" : ""}
+                          onClick={() => setIncomeInterval("custom")}
+                        >
+                          Custom
+                        </button>
                       </div>
-                    )}
-                    <h2>Total {incomeInterval.charAt(0).toUpperCase() + incomeInterval.slice(1)} Income: ${convertedIncome.toFixed(2)}</h2>
-                  </div>
-                </>
+                      {incomeInterval === "custom" && (
+                        <div className="custom-interval">
+                          <input 
+                            type="number" 
+                            value={customIncomeValue}
+                            onChange={(e) => setCustomIncomeValue(e.target.value)}
+                            placeholder="Enter value"
+                            style={{ marginRight: '8px', width: '70px' }}
+                          />
+                          <select 
+                            value={customIncomeUnit} 
+                            onChange={(e) => setCustomIncomeUnit(e.target.value)}
+                          >
+                            <option value="days">Days</option>
+                            <option value="weeks">Weeks</option>
+                            <option value="months">Months</option>
+                            <option value="annual">Years</option> 
+                          </select>
+                        </div>
+                      )}
+                      <h2>
+                        Total {incomeInterval.charAt(0).toUpperCase() + incomeInterval.slice(1)} Income: ${convertedIncome.toFixed(2)}
+                      </h2>
+                    </>
+                  )}
+                </div>
               )}
             </div>
           )}
